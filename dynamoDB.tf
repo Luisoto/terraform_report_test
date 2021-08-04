@@ -1,3 +1,5 @@
+# Terraform module to create a DynamoDb Table
+
 resource "aws_dynamodb_table" "qrvey_table" {
   name           = var.table_name
   billing_mode   = "PROVISIONED"

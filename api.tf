@@ -1,3 +1,4 @@
+# Terraform module to create an Api Gateway
 resource "aws_apigatewayv2_api" "lambda_api" {
   name          = "serverless_lambda_gw"
   protocol_type = "HTTP"
@@ -49,6 +50,13 @@ resource "aws_apigatewayv2_route" "get_route" {
   api_id = aws_apigatewayv2_api.lambda_api.id
 
   route_key = "GET /qrvey"
+  target    = "integrations/${aws_apigatewayv2_integration.qrvey_integration.id}"
+}
+
+resource "aws_apigatewayv2_route" "put_route" {
+  api_id = aws_apigatewayv2_api.lambda_api.id
+
+  route_key = "PUT /qrvey"
   target    = "integrations/${aws_apigatewayv2_integration.qrvey_integration.id}"
 }
 
